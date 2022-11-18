@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a8e31a85-4270-443d-9404-afaefd9c3cb3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/WCFMatrix.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WCFMatrix2.xsd" MetadataType="Schema" ID="578c45db-86b8-4c65-8c16-98e7e3f01c2e" SourceId="1" SourceUrl="http://localhost/WCFMatrix.svc?xsd=xsd0" />
+    <MetadataFile FileName="WCFMAtrix1.wsdl" MetadataType="Wsdl" ID="9de7a024-2406-4985-bdd9-5f4572367f6e" SourceId="1" SourceUrl="http://localhost/WCFMatrix.svc?wsdl" />
+    <MetadataFile FileName="WCFMatrix1.disco" MetadataType="Disco" ID="3c9f818d-74ad-4ed7-9ae5-7a8598683446" SourceId="1" SourceUrl="http://localhost/WCFMatrix.svc?disco" />
+    <MetadataFile FileName="WCFMatrix.xsd" MetadataType="Schema" ID="d20597b0-28fe-4ea4-9568-d50d0ca06a6d" SourceId="1" SourceUrl="http://localhost/WCFMatrix.svc?xsd=xsd2" />
+    <MetadataFile FileName="WCFMatrix21.xsd" MetadataType="Schema" ID="871d564c-86d6-45b4-a2c8-3ed232e5567c" SourceId="1" SourceUrl="http://localhost/WCFMatrix.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

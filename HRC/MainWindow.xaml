@@ -1,0 +1,24 @@
+﻿<Window x:Class="HRC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HRC"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <GroupBox Header="DataGrid size" HorizontalAlignment="Left" Height="57" Margin="41,50,0,0" VerticalAlignment="Top" Width="177">
+            <ComboBox x:Name="cmbGridsize" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="77"/>
+        </GroupBox>
+        <Button x:Name="btnCalcDeterminant" Content="Calc determinant" HorizontalAlignment="Left" Margin="259,35,0,0" VerticalAlignment="Top" Width="185" Click="btnCalcDeterminant_Click"/>
+        <Button x:Name="btnFilter" Content="Filter and order values" HorizontalAlignment="Left" Margin="259,88,0,0" VerticalAlignment="Top" Width="185" Click="btnFilter_Click"/>
+        <Label Content="Output 1:" HorizontalAlignment="Left" Margin="460,36,0,0" VerticalAlignment="Top" Height="26" RenderTransformOrigin="0.356,-0.179" Width="61"/>
+        <Label Content="Output 2:" HorizontalAlignment="Left" Margin="460,85,0,0" VerticalAlignment="Top" Width="61"/>
+        <Label x:Name="lblRes1" Content="-" HorizontalAlignment="Left" Margin="526,36,0,0" VerticalAlignment="Top" Height="26" RenderTransformOrigin="0.356,-0.179" Width="61"/>
+        <Label x:Name="lblRes2" Content="-" HorizontalAlignment="Left" Margin="526,85,0,0" VerticalAlignment="Top" Width="61"/>
+        <DataGrid x:Name="grdData" HorizontalAlignment="Left" Width="Auto" Height="Auto" Margin="41,160,0,0" VerticalAlignment="Top" />
+        <Label x:Name="lblOldVal" Content="Old Val :" HorizontalAlignment="Left" Margin="693,35,0,0" VerticalAlignment="Top" Width="91"/>
+        <Label x:Name="lblErr" Content="Label" HorizontalAlignment="Left" Height="21" Margin="41,128,0,0" VerticalAlignment="Top" Width="449" FontSize="10" Background="#FFEAE247" Foreground="Red" FontWeight="Bold"/>
+
+    </Grid>
+</Window>
