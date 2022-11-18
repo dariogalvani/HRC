@@ -77,9 +77,9 @@ namespace HRC_Service
             return myMAtrix;
         }
 
-        public static int[,] FromListStringtoMatrix(List<string> myData)
+        public static int[,] FromListStringtoMatrix(string[] myData)
         {
-            int _size = myData.Count;
+            int _size = myData.Length;
             var myMAtrix = new int[_size, _size];
             string[] separatorVals = { "," };
             for (int x = 0; x < _size; x++)
@@ -94,7 +94,35 @@ namespace HRC_Service
 
             return myMAtrix;
         }
+        public static string FilterAndOrderValues(string[] myData)
+        {
+            int[,] curMAtrix = FromListStringtoMatrix(myData);
+            int _size = curMAtrix.GetLength(0);
 
+            for (int x = 0; x < _size; x++)
+            {
+                for (int k = 0; k < _size; k++)
+                {
+                    if (curMAtrix[x, k] % 2 == 0) // even number
+                    {
+                        if (retList.Contains(curMAtrix[x, k]))
+                        {
+                            retList.Remove(curMAtrix[x, k]);
+                        }
+                        else
+                        {
+                            retList.Add(curMAtrix[x, k]);
+                        }
+                    }
+
+                }
+            }
+
+            string retString = "";
+            foreach (int xItem in retList)
+                retString += xItem + " ";
+            return retString;
+        }
         public static string FilterAndOrderValues(List<int[]> myData)
         {
             List<int> retList = new List<int>();
@@ -126,6 +154,13 @@ namespace HRC_Service
             foreach (int xItem in retList)
                 retString += xItem + " ";
             return retString;
+        }
+
+        public static int CalcDeterminant(string[] myData)
+        {
+            int[,] refMatrix = FromListStringtoMatrix(myData);
+            int retVal = Determinant(refMatrix);
+            return retVal;
         }
 
         public static int CalcDeterminant(List<int[]> myData)
