@@ -62,14 +62,16 @@ namespace HRC_WPF
         private void btnCalcDeterminant_Click(object sender, RoutedEventArgs e)
         {
             DataView curView = (DataView)grdData.ItemsSource;
-            string retVal = COM_HRC.COMWrapperWCF.CalcDeterminant(HRC_Service.MatrixHRC.FromDStoMatrix(curView.ToTable()));
+            COM_HRC.COMWrapperWCF wrapper = new COM_HRC.COMWrapperWCF();
+            string retVal = wrapper.CalcDeterminant(HRC_Service.MatrixHRC.FromDStoMatrix(curView.ToTable()));
             lblRes1.Content = retVal;
         }
 
         private void btnFilter_Click(object sender, RoutedEventArgs e)
         {
             DataView curView = (DataView)grdData.ItemsSource;
-            string retVal = COM_HRC.COMWrapperWCF.FilterAndOrderValues(HRC_Service.MatrixHRC.FromDStoMatrix(curView.ToTable()));
+                COM_HRC.COMWrapperWCF wrapper = new COM_HRC.COMWrapperWCF();
+                string retVal = wrapper.FilterAndOrderValues(HRC_Service.MatrixHRC.FromDStoMatrix(curView.ToTable()));
             lblRes2.Content = retVal;
 
         }

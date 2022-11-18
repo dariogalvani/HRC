@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace COM_HRC
 {
-    interface Interface1
+    interface IWrapperWCF
     {
+        void Init();
+        string CalcDeterminant(int[,] _value);
+        string FilterAndOrderValues(int[,] _value);
+
     }
 }

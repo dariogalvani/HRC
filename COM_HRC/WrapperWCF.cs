@@ -7,22 +7,27 @@ using System.Windows.Media;
 
 namespace COM_HRC
 {
-    public class COMWrapperWCF
+    public class COMWrapperWCF:IWrapperWCF
     {
-        public static string CalcDeterminant(int[,] _value)
+        public void Init()
+        {
+
+        }
+        public  string CalcDeterminant(int[,] _value)
         {
             WCFReference.WCFMatrixClient client = new WCFReference.WCFMatrixClient();
             List<int[]> curMatrixData = HRC_Service.MatrixHRC.FromMatrixtoList(_value);
-            string result= client.FilterAndOrderValues(curMatrixData.ToArray());
-            return result;
+            int result = client.CalcDeterminant(curMatrixData.ToArray());
+            return result.ToString();
         }
 
-        public static string FilterAndOrderValues(int[,] _value)
+        public  string FilterAndOrderValues(int[,] _value)
         {
             WCFReference.WCFMatrixClient client = new WCFReference.WCFMatrixClient();
             List<int[]> curMatrixData = HRC_Service.MatrixHRC.FromMatrixtoList(_value);
-            int result= client.CalcDeterminant(curMatrixData.ToArray());
-            return result.ToString();
+            string result = client.FilterAndOrderValues(curMatrixData.ToArray());
+            return result;
+
         }
 
     }
