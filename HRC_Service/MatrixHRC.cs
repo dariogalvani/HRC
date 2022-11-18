@@ -96,6 +96,7 @@ namespace HRC_Service
         }
         public static string FilterAndOrderValues(string[] myData)
         {
+            List<int> retList = new List<int>();
             int[,] curMAtrix = FromListStringtoMatrix(myData);
             int _size = curMAtrix.GetLength(0);
 

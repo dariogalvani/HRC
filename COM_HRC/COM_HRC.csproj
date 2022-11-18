@@ -71,6 +71,8 @@
     <None Include="Connected Services\WCFReference\WCFMatrix21.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ExcelSource\HRC technical challenge.pdf" />
+    <None Include="ExcelSource\VBAConnectionTest.xlsm" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\WCFReference\" />
@@ -96,8 +98,9 @@
       <Name>HRC_Service</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="ExcelSource\" />
+    <Content Include="ExcelSource\CODICE SORGENTE XLS.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

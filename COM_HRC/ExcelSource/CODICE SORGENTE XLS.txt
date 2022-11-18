@@ -1,0 +1,24 @@
+Sub CalcDeterminant_Click()
+    Dim matrix(4) As String
+    matrix(0) = Worksheets(1).Range("C4").Value & "," & Worksheets(1).Range("D4").Value & "," & Worksheets(1).Range("E4").Value & "," & Worksheets(1).Range("F4").Value
+    matrix(1) = Worksheets(1).Range("C5").Value & "," & Worksheets(1).Range("D5").Value & "," & Worksheets(1).Range("E5").Value & "," & Worksheets(1).Range("F5").Value
+    matrix(2) = Worksheets(1).Range("C6").Value & "," & Worksheets(1).Range("D6").Value & "," & Worksheets(1).Range("E6").Value & "," & Worksheets(1).Range("F6").Value
+    matrix(3) = Worksheets(1).Range("C7").Value & "," & Worksheets(1).Range("D7").Value & "," & Worksheets(1).Range("E7").Value & "," & Worksheets(1).Range("F7").Value
+ 
+    Set oCOMWCF = CreateObject("COM_HRC.COMWrapperWCF")
+    Set res = oCOMWCF.CalcDeterminant(matrix)
+    Worksheets(1).Range("M4").Value = res
+End Sub
+
+
+Sub FilterAndOrderValues_Click()
+    Dim matrix(4) As String
+    matrix(0) = Worksheets(1).Range("C4").Value & "," & Worksheets(1).Range("D4").Value & "," & Worksheets(1).Range("E4").Value & "," & Worksheets(1).Range("F4").Value
+    matrix(1) = Worksheets(1).Range("C5").Value & "," & Worksheets(1).Range("D5").Value & "," & Worksheets(1).Range("E5").Value & "," & Worksheets(1).Range("F5").Value
+    matrix(2) = Worksheets(1).Range("C6").Value & "," & Worksheets(1).Range("D6").Value & "," & Worksheets(1).Range("E6").Value & "," & Worksheets(1).Range("F6").Value
+    matrix(3) = Worksheets(1).Range("C7").Value & "," & Worksheets(1).Range("D7").Value & "," & Worksheets(1).Range("E7").Value & "," & Worksheets(1).Range("F7").Value
+
+    Set oCOMWCF = CreateObject("COM_HRC.COMWrapperWCF")
+    Set res = oCOMWCF.FilterAndOrderValues(matrix)
+    Worksheets(1).Range("M7").Value = res
+End Sub
