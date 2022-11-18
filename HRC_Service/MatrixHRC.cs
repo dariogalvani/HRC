@@ -125,6 +125,8 @@ namespace HRC_Service
                 retString += xItem + " ";
             return retString;
         }
+
+        //from a list o array int I
         public static string FilterAndOrderValues(List<int[]> myData)
         {
             List<int> retList = new List<int>();
