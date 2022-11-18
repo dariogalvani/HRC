@@ -25,7 +25,7 @@ namespace COM_HRC
         {
             WCFReference.WCFMatrixClient client = new WCFReference.WCFMatrixClient();
             List<int[]> curMatrixData = HRC_Service.MatrixHRC.FromMatrixtoList(_value);
-            string result = client.FilterAndOrderValues(curMatrixData.ToArray());
+            string result= client.FilterAndOrderValues(curMatrixData.ToArray());
             return result;
 
         }
