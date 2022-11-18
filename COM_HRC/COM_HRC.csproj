@@ -100,7 +100,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="ExcelSource\CODICE SORGENTE XLS.txt" />
+    <Content Include="ExcelSource\SourceCodeXls.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

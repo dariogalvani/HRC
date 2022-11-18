@@ -63,8 +63,6 @@ namespace HRC
             object[] myValues = drData.ItemArray;
             oldValue = (int) myValues[e.Column.DisplayIndex];
 
-            lblOldVal.Content = "Old Val : " + oldValue;
-           
         }
 
         private void GrdData_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -72,9 +70,9 @@ namespace HRC
             //validate cell value 
             lblErr.Visibility = Visibility.Hidden;
             var cellInfo = grdData.SelectedCells[grdData.SelectedCells.Count - 1];
-            TextBox valNew = (TextBox)cellInfo.Column.GetCellContent(cellInfo.Item);
-            try
-            {
+           try
+            {  
+                TextBox valNew = (TextBox)cellInfo.Column.GetCellContent(cellInfo.Item);
                 if (int.Parse(valNew.Text) < 1 || int.Parse(valNew.Text) > 9)
                 {
                     lblErr.Visibility = Visibility.Visible;
@@ -82,21 +80,19 @@ namespace HRC
                     e.Cancel = true;
                     return;
                 }
+                IList<DataGridCellInfo> dataCellRange = grdData.SelectedCells;
+                foreach (DataGridCellInfo curCellInfo in dataCellRange)
+                {
+                    if (curCellInfo.Column.GetCellContent(curCellInfo.Item).GetType() == typeof(TextBlock))
+                    {
+                        TextBlock cellToUpdate = (TextBlock)curCellInfo.Column.GetCellContent(curCellInfo.Item);
+                        cellToUpdate.Text = valNew.Text;
+                    }
+                }
             }
             catch
             {
                 return;
-            }
-
-            IList<DataGridCellInfo> dataCellRange = grdData.SelectedCells;
-
-            foreach (DataGridCellInfo curCellInfo in dataCellRange)
-            {
-                if (curCellInfo.Column.GetCellContent(curCellInfo.Item).GetType() == typeof(TextBlock))
-                {
-                    TextBlock cellToUpdate = (TextBlock)curCellInfo.Column.GetCellContent(curCellInfo.Item);
-                    cellToUpdate.Text = valNew.Text;
-                }
             }
         }
 

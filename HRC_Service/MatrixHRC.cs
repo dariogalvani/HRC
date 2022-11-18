@@ -120,6 +120,7 @@ namespace HRC_Service
             }
 
             string retString = "";
+            retList.Sort();
             foreach (int xItem in retList)
                 retString += xItem + " ";
             return retString;
@@ -152,6 +153,7 @@ namespace HRC_Service
             }
 
             string retString = "";
+            retList.Sort();
             foreach (int xItem in retList)
                 retString += xItem + " ";
             return retString;
