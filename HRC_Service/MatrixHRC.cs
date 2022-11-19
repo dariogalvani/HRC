@@ -14,6 +14,11 @@ namespace HRC_Service
 {
     public class MatrixHRC
     {
+        /// <summary>
+        /// challenge request -> set grid initial values to random values
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
         public static DataView GetMatrix(int n)
         {
             if (n < 0)
@@ -40,6 +45,11 @@ namespace HRC_Service
             return myDS.Tables[0].DefaultView;
         }
 
+        /// <summary>
+        /// transform list of int into matrix
+        /// </summary>
+        /// <param name="myData"></param>
+        /// <returns></returns>
         public static int[,] FromListtoMatrix(List<int[]> myData)
         {
             int _size = myData.Count;
@@ -59,7 +69,11 @@ namespace HRC_Service
         }
 
 
-        
+        /// <summary>
+        /// Trasfrom array of array of int into Matrix
+        /// </summary>
+        /// <param name="myData"></param>
+        /// <returns></returns>
         public static int[,] FromArraytoMatrix(int[][] myData)
         {
             int _size = myData.GetLength(0);
@@ -77,6 +91,11 @@ namespace HRC_Service
             return myMAtrix;
         }
 
+        /// <summary>
+        /// transform list of csv string into a matrix
+        /// </summary>
+        /// <param name="myData"></param>
+        /// <returns></returns>
         public static int[,] FromListStringtoMatrix(string[] myData)
         {
             int _size = myData.Length;
@@ -94,6 +113,12 @@ namespace HRC_Service
 
             return myMAtrix;
         }
+
+        /// <summary>
+        /// challenge request -> get value of matrix filtered and ordered
+        /// </summary>
+        /// <param name="myData"></param>
+        /// <returns></returns>
         public static string FilterAndOrderValues(string[] myData)
         {
             List<int> retList = new List<int>();
@@ -104,15 +129,15 @@ namespace HRC_Service
             {
                 for (int k = 0; k < _size; k++)
                 {
-                    if (curMAtrix[x, k] % 2 == 0) // even number
+                    if (curMAtrix[x, k] % 2 == 0) // even number avoid odd numbers
                     {
                         if (retList.Contains(curMAtrix[x, k]))
                         {
-                            retList.Remove(curMAtrix[x, k]);
+                            retList.Remove(curMAtrix[x, k]); //if number exists remove from the list
                         }
                         else
                         {
-                            retList.Add(curMAtrix[x, k]);
+                            retList.Add(curMAtrix[x, k]); //if number doesn't exist add to the list
                         }
                     }
 
@@ -120,9 +145,9 @@ namespace HRC_Service
             }
 
             string retString = "";
-            retList.Sort();
+            retList.Sort();  // sort the list 
             foreach (int xItem in retList)
-                retString += xItem + " ";
+                retString += xItem + " "; //string format result
             return retString;
         }
 
@@ -161,6 +186,11 @@ namespace HRC_Service
             return retString;
         }
 
+        /// <summary>
+        /// entry point for determinant calculation
+        /// </summary>
+        /// <param name="myData"></param>
+        /// <returns></returns>
         public static int CalcDeterminant(string[] myData)
         {
             int[,] refMatrix = FromListStringtoMatrix(myData);
@@ -168,6 +198,11 @@ namespace HRC_Service
             return retVal;
         }
 
+        /// <summary>
+        /// entry point for determinant calculation
+        /// </summary>
+        /// <param name="myData"></param>
+        /// <returns></returns>
         public static int CalcDeterminant(List<int[]> myData)
         {
             int[,] refMatrix = FromListtoMatrix(myData);
@@ -175,6 +210,11 @@ namespace HRC_Service
             return retVal;
         }
 
+        /// <summary>
+        /// challenge erquest paste data into all selected cells
+        /// </summary>
+        /// <param name="myData"></param>
+        /// <returns></returns>
         public static void PasteDataIntoGrid(DataGrid objDataGrid )
         {
             try
@@ -199,13 +239,15 @@ namespace HRC_Service
                 int currIntValues = 0;
                 foreach (DataGridCellInfo curCellInfo in cellAvailable)
                 {
+                    //cells are managed row by row scrolling columns
                     if (curCellInfo.Column.GetCellContent(curCellInfo.Item).GetType() == typeof(TextBlock))
                     {
                         TextBlock cellToUpdate = (TextBlock)curCellInfo.Column.GetCellContent(curCellInfo.Item);
+                        //if column index is smaller we are into a new row
                         if (curCellInfo.Column.DisplayIndex < displayOld)
                         {
                             currListRowIndex++;
-                            if (currListRowIndex >= maxRowClipboard)
+                            if (currListRowIndex >= maxRowClipboard) //to manage when row selected cells are more than copied ones
                                 currListRowIndex = 0;
                             currIntValues = 0;
                             displayOld = curCellInfo.Column.DisplayIndex;
@@ -217,7 +259,7 @@ namespace HRC_Service
                         {
                             displayOld = curCellInfo.Column.DisplayIndex;
                             int[] colValues = valuesToPaste[currListRowIndex];
-                            if (currIntValues >= colValues.Length)
+                            if (currIntValues >= colValues.Length) //to manage when columns selected cells are more than copied ones
                                 currIntValues = 0;
                             cellToUpdate.Text = colValues[currIntValues].ToString();
                             currIntValues++;
@@ -230,7 +272,11 @@ namespace HRC_Service
               
             }
         }
-
+        /// <summary>
+        /// transform list of string into a list of int
+        /// </summary>
+        /// <param name="myData"></param>
+        /// <returns></returns>
         private static List<int[]> fromStringToArray(string data,int numCols)
         {
             List<int[]> retArray = new List<int[]>();
@@ -256,12 +302,12 @@ namespace HRC_Service
             return retArray;
         }
 
-        public static void ReplaceValIntoSelectedCells(DataGrid grdData)
-        {
-            //throw new NotImplementedException();
-        }
-
         private static int _row = 0;
+           /// <summary>
+        /// transform datatable into a matrix
+        /// </summary>
+        /// <param name="myData"></param>
+        /// <returns></returns>
         public static int[,] FromDStoMatrix(DataTable myDT)
         {
             int _size = myDT.Rows.Count;
@@ -281,7 +327,11 @@ namespace HRC_Service
 
         }
 
-
+        /// <summary>
+        /// transform datatable into a list of int
+        /// </summary>
+        /// <param name="myData"></param>
+        /// <returns></returns>
         public static List<int[]> FromDStoList(DataTable myDT)
         {
             List<int[]> retList = new List<int[]>();
@@ -298,7 +348,11 @@ namespace HRC_Service
             }
             return retList;
         }
-
+        /// <summary>
+        /// transform matrix into a list of int
+        /// </summary>
+        /// <param name="myData"></param>
+        /// <returns></returns>
         public static List<int[]> FromMatrixtoList(int[,] myDT)
         {
             List<int[]> retList = new List<int[]>();

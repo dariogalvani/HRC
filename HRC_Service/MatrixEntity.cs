@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 namespace HRC_Service
 {
+    //from stackoverflow/MS sites
 
     /// <summary>
     /// 

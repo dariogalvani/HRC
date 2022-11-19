@@ -21,29 +21,40 @@ namespace HRC
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// local variable to store current value of the cell
+        /// </summary>
+        int oldValue = -1;
+
         public MainWindow()
         {
             InitializeComponent();
             initEnv();
         }
 
+        /// <summary>
+        /// Set the default behaviour of the app
+        /// </summary>
         private void initEnv()
         {
+            //hide error message
             lblErr.Visibility = Visibility.Hidden;
 
+            //combobox settings
             cmbGridsize.Items.Clear();
             cmbGridsize.Items.Add("4x4");
             cmbGridsize.Items.Add("5x5");
             cmbGridsize.Items.Add("36x36");
 
+            //handler to manage SelectionChanged on the combobox
             cmbGridsize.SelectionChanged += CmbGridsize_SelectionChanged;
             cmbGridsize.SelectedIndex = 0;
             grdData.SelectionMode = DataGridSelectionMode.Extended;
             grdData.SelectionUnit = DataGridSelectionUnit.Cell;
 
+            //grid settings
             grdData.ClipboardCopyMode = DataGridClipboardCopyMode.ExcludeHeader;
             grdData.KeyDown += GrdData_KeyDown;
-            grdData.SelectedCellsChanged += GrdData_SelectedCellsChanged;
             grdData.IsReadOnly = false;
             grdData.CanUserAddRows = false;
             grdData.CanUserDeleteRows = false;
@@ -53,7 +64,12 @@ namespace HRC
 
         }
 
-        int oldValue = -1;
+        /// <summary>
+        /// Fires before show prompt in the cell
+        /// It's important to store original value of the cell
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GrdData_PreparingCellForEdit(object sender, DataGridPreparingCellForEditEventArgs e)
         {
             //store cell value before editing
@@ -65,6 +81,11 @@ namespace HRC
 
         }
 
+        /// <summary>
+        /// after the user press enter button to confirm data into the cell
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GrdData_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             //validate cell value 
@@ -73,6 +94,7 @@ namespace HRC
            try
             {  
                 TextBox valNew = (TextBox)cellInfo.Column.GetCellContent(cellInfo.Item);
+                //validation of entered data
                 if (int.Parse(valNew.Text) < 1 || int.Parse(valNew.Text) > 9)
                 {
                     lblErr.Visibility = Visibility.Visible;
@@ -80,6 +102,7 @@ namespace HRC
                     e.Cancel = true;
                     return;
                 }
+                /// challenge request -> copy entered data into all selected cells
                 IList<DataGridCellInfo> dataCellRange = grdData.SelectedCells;
                 foreach (DataGridCellInfo curCellInfo in dataCellRange)
                 {
@@ -96,11 +119,11 @@ namespace HRC
             }
         }
 
-        private void GrdData_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-        {
-            //Console.WriteLine(e.AddedCells[0].Column);
-        }
-
+        /// <summary>
+        /// challenge request -> manage copy/paste data into selected cell 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GrdData_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.C && ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control))
@@ -116,6 +139,11 @@ namespace HRC
             }
         }
 
+        /// <summary>
+        /// challenge request -> at runtime set grid size by combobox selection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CmbGridsize_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
@@ -136,6 +164,11 @@ namespace HRC
             Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
         }
 
+        /// <summary>
+        /// handler button determinant calculation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCalcDeterminant_Click(object sender, RoutedEventArgs e)
         {
             WCFServiceReference.WCFMatrixClient client = new WCFServiceReference.WCFMatrixClient();
@@ -144,6 +177,11 @@ namespace HRC
             lblRes1.Content = client.CalcDeterminant(curMatrixData.ToArray());
         }
 
+        /// <summary>
+        /// handler button filter and order
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFilter_Click(object sender, RoutedEventArgs e)
         {
             WCFServiceReference.WCFMatrixClient client = new WCFServiceReference.WCFMatrixClient();
